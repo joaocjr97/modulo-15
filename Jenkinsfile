@@ -2,15 +2,37 @@ pipeline {
     agent any
 
     stages {
-        stage('Setup') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/joaocjr97/modulo-15.git'
-                sh 'npm install'
+                // Jenkins fará o checkout automaticamente
             }
         }
-        stage('Test') {
+        stage('Install dependencies (web-tests)') {
             steps {
-                sh 'NO_COLOR=1 npm test'
+                dir('web-tests') {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Run tests (web-tests)') {
+            steps {
+                dir('web-tests') {
+                    sh 'npx cypress run'
+                }
+            }
+        }
+        stage('Install dependencies (api-tests)') {
+            steps {
+                dir('api-tests') {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Run tests (api-tests)') {
+            steps {
+                dir('api-tests') {
+                    sh 'npx cypress run'
+                }
             }
         }
     }
