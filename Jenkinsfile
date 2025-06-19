@@ -10,12 +10,17 @@ pipeline {
                 }
             }
         }
+        stage('Instala binário Cypress (web-tests)') {
+            steps {
+                dir('web-tests') {
+                    // IMPORTANTE: Garante o download do binário Cypress
+                    sh 'npx cypress install'
+                }
+            }
+        }
         stage('Corrigir permissões do Cypress (web-tests)') {
             steps {
                 dir('web-tests') {
-                    // ATENÇÃO: Este passo é essencial para ambientes Linux/Jenkins/Docker, 
-                    // pois o binário do Cypress pode não vir com permissão de execução,
-                    // resultando no erro "Permission denied" ao rodar os testes!
                     sh 'chmod +x ./node_modules/.bin/cypress || true'
                 }
             }
@@ -36,11 +41,17 @@ pipeline {
                 }
             }
         }
+        stage('Instala binário Cypress (api-tests)') {
+            steps {
+                dir('api-tests') {
+                    // Mesma explicação: Baixa/instala o binário Cypress nessa pipeline.
+                    sh 'npx cypress install'
+                }
+            }
+        }
         stage('Corrigir permissões do Cypress (api-tests)') {
             steps {
                 dir('api-tests') {
-                    // ATENÇÃO: Etapa obrigatória, igual ao web-tests, para evitar 
-                    // "Permission denied" ao rodar Cypress.
                     sh 'chmod +x ./node_modules/.bin/cypress || true'
                 }
             }
