@@ -1,0 +1,24 @@
+[
+
+    {
+        "nomeProduto": "Abominable Hoodie",
+        "tamanho": "XS",
+        "cor": "Blue",
+        "quantidade": 3
+    },
+
+    {
+    "nomeProduto": "Apollo Running Short",
+    "tamanho": "34",
+    "cor": "Black",
+    "quantidade": 2
+    },
+
+    {
+        "nomeProduto": "Atlas Fitness Tank",
+        "tamanho": "XS",
+        "cor": "Blue",
+        "quantidade": 2
+    }
+
+]
