@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Jenkins fará o checkout automaticamente
-            }
-        }
         stage('Install dependencies (web-tests)') {
             steps {
                 dir('web-tests') {
